@@ -3,73 +3,52 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Web de Entretenimiento</title>
-  <style>
-    body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; }
-    .hidden { display: none; }
-    #content { margin-top: 20px; }
-    input, button { padding: 10px; margin: 5px; }
-    img { max-width: 300px; margin: 10px 0; }
-    iframe { width: 100%; max-width: 500px; height: 280px; margin: 10px 0; }
-    .section { margin-top: 20px; }
-  </style>
+  <title>SoloFans - Tu espacio personal</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Bienvenido a Tu Zona de Entretenimiento</h1>
+  <div class="container">
+    <header>
+      <h1>SoloFans</h1>
+      <nav>
+        <button onclick="showPage('inicio')">Inicio</button>
+        <button onclick="showPage('explorar')">Explorar</button>
+        <button onclick="showPage('perfil')">Mi Perfil</button>
+      </nav>
+    </header>
 
-  <div id="auth">
-    <h2>Inicia sesión</h2>
-    <input type="email" id="email" placeholder="Correo electrónico"><br>
-    <input type="password" id="password" placeholder="Contraseña"><br>
-    <button onclick="login()">Entrar</button>
+    <main>
+      <section id="login">
+        <h2>Iniciar sesión</h2>
+        <input type="email" id="email" placeholder="Correo electrónico">
+        <input type="password" id="password" placeholder="Contraseña">
+        <button onclick="login()">Entrar</button>
+      </section>
+
+      <section id="inicio" class="hidden">
+        <h2>Bienvenido a SoloFans</h2>
+        <p>Descubre contenido exclusivo de tus creadores favoritos.</p>
+      </section>
+
+      <section id="explorar" class="hidden">
+        <h2>Explorar</h2>
+        <div class="post">Publicación de ejemplo 1</div>
+        <div class="post">Publicación de ejemplo 2</div>
+      </section>
+
+      <section id="perfil" class="hidden">
+        <h2>Mi Perfil</h2>
+        <img src="https://via.placeholder.com/150" alt="Foto de perfil">
+        <p>Nombre: Usuario Demo</p>
+        <p>Biografía: Soy un creador apasionado.</p>
+      </section>
+    </main>
+
+    <footer>
+      <button onclick="logout()">Cerrar sesión</button>
+    </footer>
   </div>
 
-  <div id="content" class="hidden">
-    <h2>Contenido Exclusivo</h2>
-    <p>¡Disfruta del mejor entretenimiento!</p>
-    
-    <div class="section">
-      <h3>Memes</h3>
-      <img src="https://i.imgflip.com/30b1gx.jpg" alt="Meme 1">
-      <img src="https://i.imgflip.com/2/4t0m5.jpg" alt="Meme 2">
-    </div>
-
-    <div class="section">
-      <h3>Videos</h3>
-      <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
-    </div>
-
-    <div class="section">
-      <h3>Música</h3>
-      <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-    </div>
-
-    <button onclick="logout()">Cerrar sesión</button>
-  </div>
-
-  <script>
-    function login() {
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-      if (email && password) {
-        localStorage.setItem('user', email);
-        document.getElementById('auth').classList.add('hidden');
-        document.getElementById('content').classList.remove('hidden');
-      } else {
-        alert('Por favor, completa todos los campos.');
-      }
-    }
-
-    function logout() {
-      localStorage.removeItem('user');
-      document.getElementById('auth').classList.remove('hidden');
-      document.getElementById('content').classList.add('hidden');
-    }
-
-    if (localStorage.getItem('user')) {
-      document.getElementById('auth').classList.add('hidden');
-      document.getElementById('content').classList.remove('hidden');
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>

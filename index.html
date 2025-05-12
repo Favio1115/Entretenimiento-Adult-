@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Web de Entretenimiento</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; }
+    .hidden { display: none; }
+    #content { margin-top: 20px; }
+    input, button { padding: 10px; margin: 5px; }
+    img { max-width: 300px; margin: 10px 0; }
+    iframe { width: 100%; max-width: 500px; height: 280px; margin: 10px 0; }
+    .section { margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>Bienvenido a Tu Zona de Entretenimiento</h1>
+
+  <div id="auth">
+    <h2>Inicia sesión</h2>
+    <input type="email" id="email" placeholder="Correo electrónico"><br>
+    <input type="password" id="password" placeholder="Contraseña"><br>
+    <button onclick="login()">Entrar</button>
+  </div>
+
+  <div id="content" class="hidden">
+    <h2>Contenido Exclusivo</h2>
+    <p>¡Disfruta del mejor entretenimiento!</p>
+    
+    <div class="section">
+      <h3>Memes</h3>
+      <img src="https://i.imgflip.com/30b1gx.jpg" alt="Meme 1">
+      <img src="https://i.imgflip.com/2/4t0m5.jpg" alt="Meme 2">
+    </div>
+
+    <div class="section">
+      <h3>Videos</h3>
+      <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <div class="section">
+      <h3>Música</h3>
+      <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    </div>
+
+    <button onclick="logout()">Cerrar sesión</button>
+  </div>
+
+  <script>
+    function login() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      if (email && password) {
+        localStorage.setItem('user', email);
+        document.getElementById('auth').classList.add('hidden');
+        document.getElementById('content').classList.remove('hidden');
+      } else {
+        alert('Por favor, completa todos los campos.');
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem('user');
+      document.getElementById('auth').classList.remove('hidden');
+      document.getElementById('content').classList.add('hidden');
+    }
+
+    if (localStorage.getItem('user')) {
+      document.getElementById('auth').classList.add('hidden');
+      document.getElementById('content').classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
